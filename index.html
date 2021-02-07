@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bot controller</title>
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="ip_container">
+        <input type="text" value="192.168.1.2" id="ipInput" />
+        <button id="connectToIpButton">Conectar</button>
+      </div>
+      <div class="controls_container">
+        <div class="sliders_container">
+          <div class="slider">
+            <div class="slider_title">
+              <p>Servo 3</p>
+            </div>
+            <input
+              id="lslider"
+              step="1"
+              min="0"
+              max="180"
+              value="90"
+              type="range"
+            />
+          </div>
+          <!-- <div class="slider">
+            <input
+              id="rslider"
+              step="1"
+              min="0"
+              max="180"
+              value="90"
+              type="range"
+            />
+          </div> -->
+        </div>
+        <div class="sticks_container">
+          <div class="stick" id="left_stick"></div>
+          <div class="stick" id="right_stick"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/nipplejs@0.8.7/dist/nipplejs.js"></script>
+    <script src="./handleControls.js"></script>
+    <script src="./main.js"></script>
+  </body>
+</html>
