@@ -1,5 +1,5 @@
-const char *ssid = "Facundo";
-const char *password = "baldomera";
+const char *ssid = "miuser";
+const char *password = "mipassword";
 const char *hostname = "ESP8266_1";
 
 //IPAddress ip(192, 168, 1, 199);

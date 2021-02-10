@@ -202,7 +202,7 @@ class ControlHandler {
       this.lastTimeSended = new Date().getTime();
       console.log(message);
       this.socket.send(JSON.stringify(message));
-      await sleep(150);
+      await sleep(200);
     } else {
       await sleep(50);
     }
