@@ -2,6 +2,7 @@
 #include <ESPAsyncWebServer.h>
 #include <WebSocketsServer.h>
 #include <ArduinoJson.h>
+#include <Servo.h>
 
 #include "config.h"  // Sustituir con datos de vuestra red
 #include "API.hpp"
@@ -10,14 +11,30 @@
 #include "ESP8266_Utils.hpp"
 #include "ESP8266_Utils_AWS.hpp"
 
+
+
 void setup(void)
 {
-  Serial.begin(115200);
+  Serial.begin(9600);
   while (!Serial) {
     delay(100);
   }
 
   Serial.println("Inicio ESP8266");
+
+  //Servo
+  servo1.attach(servo1Pin, servo1MIN, servo1MAX);
+  servo2.attach(servo2Pin, servo2MIN, servo2MAX);
+  servo3.attach(servo3Pin, servo3MIN, servo3MAX);
+  //  servo4.attach(servo4Pin, servo4MIN, servo4MAX);
+
+  //  Motores
+  pinMode(leftMotorIn1, OUTPUT);
+  pinMode(leftMotorIn2, OUTPUT);
+  pinMode(leftMotorSpeedPin, OUTPUT);
+  pinMode(rightMotorIn1, OUTPUT);
+  pinMode(rightMotorIn2, OUTPUT);
+  pinMode(rightMotorSpeedPin, OUTPUT);
 
   ConnectWiFi_STA(true);
 

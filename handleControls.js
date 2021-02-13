@@ -1,6 +1,6 @@
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-const SERVO_MOVEMENT_FACTOR = 30;
+const SERVO_MOVEMENT_FACTOR = 15;
 
 // Manejo sliders
 const leftSlider = document.getElementById("lslider");
@@ -33,7 +33,7 @@ class ControlHandler {
 
     this.leftMotorSpeed = 0;
     this.rightMotorSpeed = 0;
-    this.motorsLim = 255;
+    this.motorsLim = 1023;
 
     this.servo1Lim = [0, 180];
     this.servo2Lim = [0, 180];
@@ -107,13 +107,13 @@ class ControlHandler {
 
     // Adelante
     if (leftStickX == 0 && leftStickY == -1) {
-      leftMotorSpeed = 255;
-      rightMotorSpeed = 255;
+      leftMotorSpeed = 1023;
+      rightMotorSpeed = 1023;
     }
     // Atras
     else if (leftStickX == 0 && leftStickY == 1) {
-      leftMotorSpeed = -255;
-      rightMotorSpeed = -255;
+      leftMotorSpeed = -1023;
+      rightMotorSpeed = -1023;
     }
     // Quieto
     else if (leftStickX == 0 && leftStickY == 0) {
@@ -122,23 +122,23 @@ class ControlHandler {
     }
     // Giro derecha
     else if (leftStickX == 1 && leftStickY == -1) {
-      leftMotorSpeed = 255;
+      leftMotorSpeed = 1023;
       rightMotorSpeed = 0;
     } else if (leftStickX == -1 && leftStickY == -1) {
       leftMotorSpeed = 0;
-      rightMotorSpeed = 255;
+      rightMotorSpeed = 1023;
     } else if (leftStickX == -1 && leftStickY == 1) {
       leftMotorSpeed = 0;
-      rightMotorSpeed = -255;
+      rightMotorSpeed = -1023;
     } else if (leftStickX == 1 && leftStickY == 1) {
-      leftMotorSpeed = -255;
+      leftMotorSpeed = -1023;
       rightMotorSpeed = 0;
     } else if (leftStickX == 1 && leftStickY == 0) {
-      leftMotorSpeed = 255;
-      rightMotorSpeed = -255;
+      leftMotorSpeed = 1023;
+      rightMotorSpeed = -1023;
     } else if (leftStickX == -1 && leftStickY == 0) {
-      leftMotorSpeed = -255;
-      rightMotorSpeed = 255;
+      leftMotorSpeed = -1023;
+      rightMotorSpeed = 1023;
     }
 
     if (this.leftMotorSpeed != leftMotorSpeed) {
@@ -202,7 +202,7 @@ class ControlHandler {
       this.lastTimeSended = new Date().getTime();
       console.log(message);
       this.socket.send(JSON.stringify(message));
-      await sleep(200);
+      await sleep(100);
     } else {
       await sleep(50);
     }
