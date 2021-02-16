@@ -1,6 +1,6 @@
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-const SERVO_MOVEMENT_FACTOR = 15;
+const SERVO_MOVEMENT_FACTOR = 25;
 
 // Manejo sliders
 const leftSlider = document.getElementById("lslider");
@@ -49,7 +49,9 @@ class ControlHandler {
     this.servo1Pos = data.pos[0];
     this.servo2Pos = data.pos[1];
     this.servo3Pos = data.pos[2];
+    this.servo4Pos = data.pos[3];
     leftSlider.value = this.servo3Pos;
+    rightSlider.value = this.servo4Pos;
     // this.servo4Pos = data.pos4;
     console.log(this);
   }
@@ -186,6 +188,14 @@ class ControlHandler {
       shouldUpdate = true;
     }
     this.servo3Pos = currentRvalue;
+
+    // Uso r1 y l1 para un servo
+    let currentLvalue = parseInt(rightSlider.value);
+
+    if (currentLvalue != this.servo4Pos) {
+      shouldUpdate = true;
+    }
+    this.servo4Pos = currentLvalue;
 
     // Mando a redondear los valores
     this.roundValues();

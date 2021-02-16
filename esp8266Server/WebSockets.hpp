@@ -3,7 +3,7 @@ AsyncWebSocket ws("/ws");
 void sendServoPos()
 {
   //  Serial.println("por enviar dato");
-  String response = "{\"pos\":[" + String(servo1Pos) + "," + String(servo2Pos) + "," + String(servo3Pos) + "]";
+  String response = "{\"pos\":[" + String(servo1Pos) + "," + String(servo2Pos) + "," + String(servo3Pos) + "," + String(servo4Pos) + "]";
   response += ",\"messageType\":\"getServoPos\",\"command\":\"send\"}";
   Serial.println(" Envio dato por socket ");
   Serial.println(response);
@@ -44,6 +44,12 @@ void handleJsonData(StaticJsonDocument<400> doc)
       servo3.write(servo3Pos);
       delay(20);
     }
+    if (s4 != servo4Pos) {
+      servo4Pos = s4;
+      Serial.println("Servo4:" + String(servo4Pos));
+      servo4.write(servo4Pos);
+      delay(20);
+    }
 
     //  Motor izquierda
     if (newspeedleft > 0) {
@@ -71,7 +77,7 @@ void handleJsonData(StaticJsonDocument<400> doc)
       }
       leftMotorSpeed = newspeedleft;
       Serial.println("motor izquierda:" + String(leftMotorSpeed));
-      digitalWrite(leftMotorSpeedPin, leftMotorSpeed);
+      digitalWrite(leftMotorSpeedPin, newspeedleft);
     }
 
 

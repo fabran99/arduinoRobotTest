@@ -1,6 +1,6 @@
 //Red
-const char *ssid = "arduinoBotNodemcu";
-const char *password = "nodemcubot";
+const char *ssid = "CarlosBot";
+const char *password = "CarlosBot";
 const char *hostname = "ESP8266_1";
 
 IPAddress ip(192, 168, 1, 44);
@@ -29,6 +29,12 @@ int servo3MIN = 500;
 int servo3MAX = 2420;
 Servo servo3;
 
+int servo4Pin = D7;
+int servo4Pos = 90;
+int servo4MIN = 500;
+int servo4MAX = 2420;
+Servo servo4;
+
 //Motores
 int rightMotorIn1 = D3;
 int rightMotorSpeedPin = D4;
@@ -36,6 +42,6 @@ int rightMotorIn2 = D5;
 int rightMotorSpeed = 0;
 
 int leftMotorIn1 = D6;
-int leftMotorSpeedPin = D7;
+int leftMotorSpeedPin = 3;
 int leftMotorIn2 = D8;
 int leftMotorSpeed = 0;

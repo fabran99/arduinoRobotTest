@@ -1,6 +1,6 @@
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-const SERVO_MOVEMENT_FACTOR = 30;
+const SERVO_MOVEMENT_FACTOR = 10;
 
 class ControlHandler {
   constructor() {
@@ -27,7 +27,7 @@ class ControlHandler {
     this.servo1Lim = [0, 180];
     this.servo2Lim = [0, 180];
     this.servo3Lim = [0, 180];
-    this.servo4Lim = [0, 180];
+    this.servo4Lim = [50, 165];
 
     this.socket = null;
     this.lastTimeSended = 0;
@@ -37,7 +37,7 @@ class ControlHandler {
     this.servo1Pos = data.pos[0];
     this.servo2Pos = data.pos[1];
     this.servo3Pos = data.pos[2];
-    // this.servo4Pos = data.pos4;
+    this.servo4Pos = data.pos4;
 
     console.log(this);
   }
@@ -116,23 +116,23 @@ class ControlHandler {
     }
     // Giro derecha
     else if (leftStickX == 1 && leftStickY == -1) {
-      leftMotorSpeed = 255;
+      leftMotorSpeed = 1023;
       rightMotorSpeed = 0;
     } else if (leftStickX == -1 && leftStickY == -1) {
       leftMotorSpeed = 0;
-      rightMotorSpeed = 255;
+      rightMotorSpeed = 1023;
     } else if (leftStickX == -1 && leftStickY == 1) {
       leftMotorSpeed = 0;
-      rightMotorSpeed = -255;
+      rightMotorSpeed = -1023;
     } else if (leftStickX == 1 && leftStickY == 1) {
-      leftMotorSpeed = -255;
+      leftMotorSpeed = -1023;
       rightMotorSpeed = 0;
     } else if (leftStickX == 1 && leftStickY == 0) {
-      leftMotorSpeed = 255;
-      rightMotorSpeed = -255;
+      leftMotorSpeed = 1023;
+      rightMotorSpeed = -1023;
     } else if (leftStickX == -1 && leftStickY == 0) {
-      leftMotorSpeed = -255;
-      rightMotorSpeed = 255;
+      leftMotorSpeed = -1023;
+      rightMotorSpeed = 1023;
     }
 
     if (this.leftMotorSpeed != leftMotorSpeed) {
@@ -260,7 +260,7 @@ class ControlHandler {
       this.lastTimeSended = new Date().getTime();
       console.log(message);
       this.socket.send(JSON.stringify(message));
-      await sleep(200);
+      await sleep(100);
     } else {
       await sleep(20);
     }

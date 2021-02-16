@@ -26,7 +26,7 @@ void setup(void)
   servo1.attach(servo1Pin, servo1MIN, servo1MAX);
   servo2.attach(servo2Pin, servo2MIN, servo2MAX);
   servo3.attach(servo3Pin, servo3MIN, servo3MAX);
-  //  servo4.attach(servo4Pin, servo4MIN, servo4MAX);
+    servo4.attach(servo4Pin, servo4MIN, servo4MAX);
 
   //  Motores
   pinMode(leftMotorIn1, OUTPUT);

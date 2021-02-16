@@ -9,7 +9,7 @@ window.addEventListener("gamepaddisconnected", (evt) => {
 });
 
 // Manejo socket
-var connection = new WebSocket("ws://192.168.1.9/ws", ["arduino"]);
+var connection = new WebSocket("ws://192.168.1.44/ws", ["arduino"]);
 
 const onopen = () => {
   controller.socket = connection;
